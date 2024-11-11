@@ -19,9 +19,93 @@ New York Police Department. NYPD shooting incident data historic. https://data.c
 
 The data cleaning can be found in the [Arrests-](https://github.com/JoshuaGottlieb/Scalable-Databases-Midterm/blob/main/src/Arrest-Data-Cleaning.ipynb)/[Complaints-](https://github.com/JoshuaGottlieb/Scalable-Databases-Midterm/blob/main/src/Complaints-Data-Cleaning.ipynb)/[Shooting-](https://github.com/JoshuaGottlieb/Scalable-Databases-Midterm/blob/main/src/Shooting-Data-Cleaning.ipynb)/[Population-Data-Cleaning.ipynb](https://github.com/JoshuaGottlieb/Scalable-Databases-Midterm/blob/main/src/Population-Data-Cleaning.ipynb) notebooks found under src, using utility functions from [src/modules/cleaning_utils.py](https://github.com/JoshuaGottlieb/Scalable-Databases-Midterm/blob/main/src/modules/cleaning_utils.py). The cleaned data was small enough to fit into gzipped parquet files and upload to Github, and all of the cleaned data is under [data/cleaned/](https://github.com/JoshuaGottlieb/Scalable-Databases-Midterm/tree/main/data/cleaned). The data was then further processed and split into tables in [Table-and-Database-Creation.ipynb](https://github.com/JoshuaGottlieb/Scalable-Databases-Midterm/blob/main/src/Table-and-Database-Creation.ipynb). This team decided to utilize SQLite as a database solution due to the built-in compatability with the Pandas module to directly execute the results of queries into dataframes, despite the known lack of functionality offered by SQLite.
 
-The resultant database was too large, even when compressed to load onto GitHub. Thus, to regenerate the database, one should download the datasets from the above links and run the cleaning and table creation notebooks. Alternatively, the raw data as used by this project, along with the cleaned parquet.gz files and zipped database can be found at this personal Google Drive link: https://drive.google.com/drive/folders/1dvpSTP7rCZfLwsFYCO6OoKacUBDg9MTV?usp=sharing
+The resultant database was too large, even when compressed to load onto GitHub. Thus, to regenerate the database, one should download the datasets from the above links and run the cleaning and table creation notebooks. Alternatively, the raw data as used by this project, along with the cleaned parquet.gz files and zipped database can be found at this personal [Google Drive](https://drive.google.com/drive/folders/1dvpSTP7rCZfLwsFYCO6OoKacUBDg9MTV?usp=sharing).
 
 The results of some queries, along with visualizations of those results can be found in the [SQL-Queries-and-Visualizations.ipynb](https://github.com/JoshuaGottlieb/Scalable-Databases-Midterm/blob/main/src/SQL-Queries-and-Visualizations.ipynb) notebook, as well as in the presentation available in the top-level of this repository.
+
+## Database Tables
+```
+# For a more detailed description of column meanings, see the original datasets, listed earlier in this README.
+
+INTERNAL_CODES (detailed offense code and description)      # Extracted from Arrests and Complaints
+    PD_CD primary key
+    PD_DESC
+
+OFFENSE_CODES (less detailed offense code and description)  # Extracted from Arrests and Complaints
+    KY_CD primary key
+    OFNS_DESC
+
+ARRESTS    # Arrests Data
+    ARREST_KEY primary key
+    ARREST_DATE
+    KY_CD foreign key into OFFENSE_CODES
+    PD_CD foreign key into INTERNAL_CODES
+    LAW_CAT_PD
+    LAW_CODE
+    PRECINCT_CD
+    JURISDICTION_CODE
+    BORO
+    PERP_AGE_GROUP
+    PERP_SEX
+    PERP_RACE
+    LATITUDE
+    LONGITUDE
+
+COMPLAINTS    # Complaints Data
+    CMPLT_KEY primary key
+    CMPLNT_DATE
+    CMPLNT_TIME
+    RPT_DATE
+    KY_CD foreign key into OFFENSE_CODES
+    PD_CD foreign key into INTERNAL_CODES
+    LAW_CAT_PD
+    PRECINCT_CD
+    JURISDICTION_CODE
+    JURISDICTION_DESC
+    BORO
+    SUSP_AGE_GROUP
+    SUSP_SEX
+    SUSP_RACE
+    BORO
+    VIC_AGE_GROUP
+    VIC_SEX
+    VIC_RACE
+    LATITUDE
+    LONGITUDE
+
+SHOOTINGS    # Shooting Incident Data
+    INCIDENT_KEY primary key
+    OCCUR_DATE
+    OCCUR_TIME
+    PRECINCT_CD
+    JURISDICTION_CODE
+    BORO
+    STATISTICAL_MURDER_FLAG
+    PERP_AGE_GROUP
+    PERP_SEX
+    PERP_RACE
+    VIC_AGE_GROUP
+    VIC_SEX
+    VIC_RACE
+    LATITUDE
+    LONGITUDE
+
+# Note: This table is not properly set up in SQL form for query matching.
+# It is highly recommended to use it as a lookup table via Pandas as used in src/SQL-Queries-and-Visualizations.ipynb
+BOROUGHS     # Borough Population Data
+    BORO_CD
+    BORO_DESC
+    "1950"
+    "1960"
+    "1970"
+    "1980"
+    "1990"
+    "2000"
+    "2010"
+    "2020"
+    "2030"
+    "2040"
+```
 
 ## Suggested Respository Structure
 ```
