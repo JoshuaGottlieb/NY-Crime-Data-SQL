@@ -21,7 +21,7 @@ The data cleaning can be found in the [Arrests-](https://github.com/JoshuaGottli
 
 The resultant database was too large, even when compressed to load onto GitHub. Thus, to regenerate the database, one should download the datasets from the above links and run the cleaning and table creation notebooks. Alternatively, the raw data as used by this project, along with the cleaned parquet.gz files and zipped database can be found at this personal [Google Drive](https://drive.google.com/drive/folders/1dvpSTP7rCZfLwsFYCO6OoKacUBDg9MTV?usp=sharing).
 
-The results of some queries, along with visualizations of those results can be found in the [SQL-Queries-and-Visualizations.ipynb](https://github.com/JoshuaGottlieb/Scalable-Databases-Midterm/blob/main/src/SQL-Queries-and-Visualizations.ipynb) notebook, as well as in the presentation available in the top-level of this repository.
+The results of some queries, along with visualizations of those results can be found in the [SQL-Queries-and-Visualizations.ipynb](https://github.com/JoshuaGottlieb/Scalable-Databases-Midterm/blob/main/src/SQL-Queries-and-Visualizations.ipynb) notebook, as well as in the presentation available in [presentation/Gottlieb-Correa-Rai-Chunsen-CS673-Midterm-Presentation.pdf](https://github.com/JoshuaGottlieb/Scalable-Databases-Midterm/blob/main/presentation/Gottlieb-Correa-Rai-Chunsen-CS673-Midterm-Presentation.pdf).
 
 ## Database Tables
 ```
