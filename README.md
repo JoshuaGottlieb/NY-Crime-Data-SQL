@@ -1,12 +1,3 @@
-# Scalable-Databases-Midterm
-## Class: CS 673 Scalable Databases - Fall 2024, Pace University
-## Instructor: Professor Anthony Escalona
-## Team Members:
-* Joshua Gottlieb (joshuadavidgottlieb@gmail.com, jg05394n@pace.edu)
-* Carlos Correa (cc95353n@pace.edu)
-* Anchal Rai (ar65667n@pace.edu)
-* Martin Chunsen (cs83339n@pace.edu)
-
 ## Project Description and Repository Usage
 A project meant to showcase the ability to clean data, construct and populate a SQL database with tables to contain the data, and execute queries to extract the data in order to create visualizations in Python using the Matplotlib and Seaborn libraries. For this project, four data sets were used from NYC OpenData, three from NYPD data (Historic Arrests, Complaints, and Shooting Data, 2006-2023) and one from the Department of City Planning (New York City Population by Borough, 1950-2040). The raw data sets are too large to store on GitHub directly and can be downloaded from the following links; however, these data sets may be updated over time and may not be identical to those used in the project (retrieved October 14, 2024).
 
